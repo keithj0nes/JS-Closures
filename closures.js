@@ -15,11 +15,11 @@ closure over the name variable. Invoke outer saving the return value into
 another variable called 'inner'. */
 
 // Code Here
-
+var inner = outer()
 //Once you do that, invoke inner.
 
 //Code Here
-
+inner();
 
 
 
@@ -48,8 +48,11 @@ Create a makeCall function that when invoked logs 'Calling Jake at 435-215-9248'
 in your console. */
 
   //Code Here
+function makeCall(number){
+  console.log(callFriend());
+}
 
-
+makeCall("435-215-9847");
 
 
 
@@ -67,13 +70,25 @@ in your console. */
 properly. */
 
 //Code Here
+function makeCounter() {
+    var counter = 0;
+    return function add(){
+      counter += 1;
+      return counter;
+    }
+
+}
+
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
+  count();
+
+//  console.log(count());
 
 
 
@@ -99,15 +114,28 @@ function counterFactory(value) {
 
   // Code here.
 
+  var total = value;
 
   return {
+    inc: function(){
+      total += 1;
+    },
+    dec: function(){
+      total -= 1;
+    },
+    log: function() {
+      console.log(total);
+    }
   }
 }
 
 
 counter = counterFactory(10);
 
-
+counter.inc();
+counter.inc();
+counter.dec();
+counter.log();
 
 
 
@@ -129,16 +157,18 @@ function motivation(firstname, lastname){
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
   // code message function here.
-
+  return function message(){
+      return welcomeText + firstname + " " + lastname;
+  };
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
-
+  // return message();
+  console.log(message());
 }
 
 motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
 
-
+//console.log(motivation("josh", "man"));
 
 
 
